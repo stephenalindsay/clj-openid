@@ -1,6 +1,15 @@
 # clj-openid
 
-Clojure OpenID library, based on openid4java.
+
+NOTE: If you are looking for something that is complete, likely to be maintained,
+and is written by someone who actually knows what they're doing, you probably should
+look at https://github.com/cemerick/friend  
+
+  
+  
+--
+
+clj-openid - Clojure OpenID library, based on openid4java.
 
 Work in progress, only a subset of features have been wrapped. I know
 very little about OpenID so if you have some expertise and would like 
