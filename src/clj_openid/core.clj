@@ -42,7 +42,8 @@
 (defn validate
   [{:keys [params session] :as req}]
   (let [openid-req   (:openid-req session)
-        {:keys [manager discovery-info]} openid-req
+        {:keys [discovery-info]} openid-req
+        manager (ConsumerManager.)
         request-url  (rebuild-request-url req)
         param-list   (ParameterList. (map->hashmap params))
         verification (.verify manager request-url param-list discovery-info)]
