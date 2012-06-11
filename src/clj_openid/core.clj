@@ -41,12 +41,13 @@
 
 (defn validate
   [{:keys [params session] :as req}]
-  (let [openid-req   (:openid-req session)
-        {:keys [manager discovery-info]} openid-req
-        request-url  (rebuild-request-url req)
-        param-list   (ParameterList. (map->hashmap params))
-        verification (.verify manager request-url param-list discovery-info)]
-    (.getVerifiedId verification)))
+  (if-let [openid-req   (:openid-req session)]
+    (let [{:keys [manager discovery-info]} openid-req
+          _ (println "openid-req : " openid-req)
+          request-url  (rebuild-request-url req)
+          param-list   (ParameterList. (map->hashmap params))
+          verification (.verify manager request-url param-list discovery-info)]
+      (.getVerifiedId verification))
+    (throw (RuntimeException. "No openid request in session"))))
     
         
-
